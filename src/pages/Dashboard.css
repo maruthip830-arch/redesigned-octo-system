@@ -1,0 +1,277 @@
+.dashboard-container {
+  padding-top: 80px; /* Account for sticky navbar */
+  min-height: 100vh;
+  position: relative;
+  z-index: 2;
+}
+
+.dashboard-header-block {
+  padding: 4rem 0 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 2rem;
+}
+
+.dashboard-header-block h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-header-block p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.dashboard-main {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2rem;
+  padding-bottom: 4rem;
+}
+
+.dashboard-sidebar {
+  padding: 1.5rem;
+  border-radius: 12px;
+  height: max-content;
+  position: sticky;
+  top: 100px;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.user-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.user-card-info h3 {
+  font-size: 1.1rem;
+  margin: 0 0 0.2rem 0;
+}
+
+.user-card-info span {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.kyc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 100px;
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.dashboard-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+}
+
+.nav-item.active {
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--accent-primary);
+}
+
+.content-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 2rem;
+  backdrop-filter: blur(16px);
+}
+
+.content-panel h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1rem;
+}
+
+.rental-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.rental-status {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.rental-status.active {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.rental-card-body {
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  align-items: center;
+}
+
+.rental-card-body img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.rental-info h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.rental-info p {
+  color: var(--text-tertiary);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.rental-dates {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.rental-dates span {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.rental-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+}
+
+.history-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.history-details flex-1 {
+  flex: 1;
+}
+
+.history-details h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+
+.history-details p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.history-price {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  margin-left: auto;
+}
+
+.settings-form .row {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.settings-form .half {
+  flex: 1;
+}
+
+.input-field.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 900px) {
+  .dashboard-main {
+    grid-template-columns: 1fr;
+  }
+  
+  .dashboard-sidebar {
+    position: static;
+  }
+  
+  .rental-card-body {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .rental-dates {
+    justify-content: center;
+  }
+  
+  .settings-form .row {
+    flex-direction: column;
+    gap: 0;
+  }
+}

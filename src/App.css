@@ -1,0 +1,118 @@
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ambient Background Glows */
+.ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.glow-1 {
+  top: -100px;
+  left: -100px;
+  width: 500px;
+  height: 500px;
+  background: rgba(99, 102, 241, 0.2);
+}
+
+.glow-2 {
+  top: 40%;
+  right: -200px;
+  width: 600px;
+  height: 600px;
+  background: rgba(139, 92, 246, 0.15);
+}
+
+.glow-3 {
+  bottom: 0px;
+  left: 20%;
+  width: 400px;
+  height: 400px;
+  background: rgba(59, 130, 246, 0.15);
+}
+
+main {
+  flex: 1;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Button Base */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: 0.8rem 1.7rem;
+  border-radius: var(--border-radius-md);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all var(--transition-normal);
+  color: var(--text-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: var(--accent-gradient);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border-color);
+}
+
+.btn-outline:before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--bg-surface-hover);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  z-index: 0;
+}
+
+.btn-outline:hover:before {
+  opacity: 1;
+}
+
+.btn-outline:hover {
+  border-color: var(--text-secondary);
+  transform: translateY(-2px);
+}
+
+.btn > * {
+  z-index: 1;
+}

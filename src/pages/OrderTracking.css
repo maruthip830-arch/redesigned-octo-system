@@ -1,0 +1,248 @@
+.tracking-container {
+  padding-top: 80px; 
+  min-height: 100vh;
+  position: relative;
+  z-index: 2;
+}
+
+.tracking-header-block {
+  padding: 4rem 0 3rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.tracking-header-block h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.tracking-header-block p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.tracking-search-form {
+  max-width: 600px;
+  margin: 2rem auto 0;
+  display: flex;
+  gap: 1rem;
+}
+
+.search-input-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-tertiary);
+}
+
+.search-input-wrapper .input-field {
+  padding-left: 3rem;
+  height: 50px;
+  font-size: 1.1rem;
+}
+
+.tracking-search-form .btn {
+  height: 50px;
+  padding: 0 2rem;
+  font-weight: 600;
+}
+
+.tracking-loading {
+  padding: 5rem 2rem;
+  text-align: center;
+  border-radius: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.tracking-info-card {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  padding: 2rem;
+  border-radius: 16px;
+  border-left: 4px solid var(--accent-primary);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.info-label {
+  display: block;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-tertiary);
+  margin-bottom: 0.4rem;
+}
+
+.info-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.tracking-timeline-card {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem;
+  border-radius: 16px;
+}
+
+.timeline-container {
+  position: relative;
+}
+
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 32px;
+  width: 2px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.timeline-step {
+  display: flex;
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.timeline-step:last-child {
+  margin-bottom: 0;
+}
+
+.step-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.step-content {
+  flex: 1;
+  padding-top: 0.5rem;
+}
+
+.step-content h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.3rem;
+  color: var(--text-primary);
+}
+
+.step-content p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.step-time {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  font-family: monospace;
+}
+
+/* Step States */
+.timeline-step.completed .step-icon {
+  background: var(--success);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+}
+
+.timeline-step.active .step-icon {
+  background: var(--accent-gradient);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+}
+
+.timeline-step.active .step-content h3 {
+  color: var(--accent-primary);
+}
+
+/* Fill the connecting line behind completed/active steps */
+.timeline-step.active::before {
+  content: '';
+  position: absolute;
+  top: -100px; /* Stretch up to previous step */
+  bottom: 50%;
+  left: 32px;
+  width: 2px;
+  background: var(--success);
+  z-index: -1;
+}
+
+.timeline-step.pending .step-icon {
+  background: var(--bg-card);
+  border: 2px solid rgba(255,255,255,0.1);
+  color: var(--text-tertiary);
+}
+
+.timeline-step.pending .step-content {
+  opacity: 0.5;
+}
+
+.pulse-glow-light {
+  animation: pulseLight 2s infinite;
+}
+
+@keyframes pulseLight {
+  0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(99, 102, 241, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+}
+
+@media (max-width: 900px) {
+  .tracking-search-form {
+    flex-direction: column;
+  }
+  
+  .info-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .timeline-step {
+    gap: 1.5rem;
+  }
+  
+  .timeline-container::before,
+  .timeline-step.active::before {
+    left: 24px;
+  }
+  
+  .step-icon {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .step-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+}
