@@ -58,7 +58,7 @@ const CartModal = () => {
     if (user) {
       setFormData(prev => ({
         ...prev,
-        name: user.name || '',
+        name: user.name || user.displayName || '',
         phone: user.phone || '',
         email: user.email || ''
       }));
@@ -130,9 +130,9 @@ const CartModal = () => {
           to_email: user.email,
           email: user.email,
           user_email: user.email,
-          to_name: user.name,
-          name: user.name,
-          user_name: user.name,
+          to_name: user.name || user.displayName || user.email || 'User',
+          name: user.name || user.displayName || user.email || 'User',
+          user_name: user.name || user.displayName || user.email || 'User',
           otp: newOtp,
           code: newOtp,
           message: `Your AstraRent Identity Verification Code is: ${newOtp}`

@@ -49,7 +49,7 @@ const Navbar = () => {
                     </Link>
                   )}
                   <Link to="/dashboard" style={{color: 'var(--text-secondary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none'}}>
-                    <User size={18} /> Welcome, {user.name}
+                    <User size={18} /> Welcome, {user.name || user.displayName || user.email?.split('@')[0] || 'User'}
                   </Link>
                   <button className="btn btn-outline" style={{width: '100%'}} onClick={logout}>Logout</button>
                 </>
@@ -78,7 +78,7 @@ const Navbar = () => {
                   </Link>
                 )}
                 <Link to="/dashboard" className="user-name" style={{fontWeight: 500, color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', transition: 'color 0.2s ease'}}>
-                  <User size={18} /> {user.name}
+                  <User size={18} /> {user.name || user.displayName || user.email?.split('@')[0] || 'User'}
                 </Link>
                 <button className="btn btn-outline" onClick={logout} style={{padding: '0.5rem 1.2rem'}}>Logout</button>
               </div>

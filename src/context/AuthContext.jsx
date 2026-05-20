@@ -50,7 +50,11 @@ export const AuthProvider = ({ children }) => {
       return { success: true };
     } catch (error) {
       console.error("Firebase Login Error:", error);
-      return { success: false, error: 'Authorization Denied: ' + error.message };
+      let errorMsg = error.message;
+      if (error.code === 'auth/invalid-credential' || error.message.includes('auth/invalid-credential')) {
+        errorMsg = 'Incorrect email or password. If you do not have an account, please click Sign Up below.';
+      }
+      return { success: false, error: 'Authorization Denied: ' + errorMsg };
     }
   };
 
@@ -59,15 +63,22 @@ export const AuthProvider = ({ children }) => {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const userObj = userCredential.user;
       
-      // Save extended profile data into Firestore Document
-      await setDoc(doc(db, 'users', userObj.uid), {
+      const userData = {
         name,
         email,
         phone,
         createdAt: new Date().toISOString(),
         role: email === 'admin@astrarent.com' ? 'admin' : 'user'
-      });
+      };
+
+      // Save extended profile data into Firestore Document
+      await setDoc(doc(db, 'users', userObj.uid), userData);
       
+      // Prevent onAuthStateChanged race condition by manually updating context state immediately
+      const mergedUser = { ...userObj, ...userData };
+      setUser(mergedUser);
+      localStorage.setItem('astra_user', JSON.stringify(mergedUser));
+
       setIsAuthModalOpen(false);
       return { success: true };
     } catch (error) {

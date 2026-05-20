@@ -28,7 +28,11 @@ const Dashboard = () => {
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const userOrders = [];
       snapshot.forEach(doc => userOrders.push({ ...doc.data(), docId: doc.id }));
-      setOrders(userOrders.sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp)));
+      setOrders(userOrders.sort((a, b) => {
+        const timeA = a.timestamp ? new Date(a.timestamp).getTime() : 0;
+        const timeB = b.timestamp ? new Date(b.timestamp).getTime() : 0;
+        return timeB - timeA;
+      }));
     });
 
     return () => unsubscribe();
@@ -67,7 +71,7 @@ const Dashboard = () => {
     <div className="dashboard-container">
       <div className="dashboard-header-block">
         <div className="container">
-          <h1 className="text-gradient">Welcome back, {user.name.split(' ')[0]}</h1>
+          <h1 className="text-gradient">Welcome back, {(user.name || user.displayName || user.email || 'User').split(' ')[0]}</h1>
           <p>Manage your fleet rentals and account settings</p>
         </div>
       </div>
@@ -79,8 +83,8 @@ const Dashboard = () => {
               <User size={32} />
             </div>
             <div className="user-card-info">
-              <h3>{user.name}</h3>
-              <span>{user.email}</span>
+              <h3>{user.name || user.displayName || user.email || 'User'}</h3>
+              <span>{user.email || ''}</span>
               <div className="kyc-badge success">
                 <ShieldCheck size={14} /> KYC Verified
               </div>
@@ -232,22 +236,22 @@ const Dashboard = () => {
                 <div className="form-group row">
                   <div className="half">
                     <label><User size={16} /> Full Name</label>
-                    <input type="text" name="name" defaultValue={user.name} required className="input-field" />
+                    <input type="text" name="name" defaultValue={user.name || user.displayName || ''} required className="input-field" />
                   </div>
                   <div className="half">
                     <label><Mail size={16} /> Email Address</label>
-                    <input type="email" defaultValue={user.email} disabled className="input-field disabled" title="Email cannot be changed" />
+                    <input type="email" defaultValue={user.email || ''} disabled className="input-field disabled" title="Email cannot be changed" />
                   </div>
                 </div>
                 
                 <div className="form-group mt-4">
                   <label><Phone size={16} /> Phone Number</label>
-                  <input type="tel" name="phone" defaultValue={user.phone} required className="input-field" />
+                  <input type="tel" name="phone" defaultValue={user.phone || ''} required className="input-field" />
                 </div>
 
                 <div className="form-group mt-4">
                   <label><MapPin size={16} /> Primary Shipping Address</label>
-                  <textarea name="address" defaultValue={user.address} className="input-field" rows="4" placeholder="Enter your full dispatch address..."></textarea>
+                  <textarea name="address" defaultValue={user.address || ''} className="input-field" rows="4" placeholder="Enter your full dispatch address..."></textarea>
                 </div>
 
                 <button type="submit" className="btn btn-primary mt-4">
