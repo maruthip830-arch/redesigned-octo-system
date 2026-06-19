@@ -15,13 +15,13 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBY2dBQzcaaJ3ZCwdAOpwXxIIUl8cy14S0",
-  authDomain: "astrarent-f4a55.firebaseapp.com",
-  projectId: "astrarent-f4a55",
-  storageBucket: "astrarent-f4a55.firebasestorage.app",
-  messagingSenderId: "249409220629",
-  appId: "1:249409220629:web:75dba3eab2cc2091259e1c",
-  measurementId: "G-97336489VV"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase

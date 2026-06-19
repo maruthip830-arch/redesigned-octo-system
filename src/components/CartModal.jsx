@@ -139,10 +139,10 @@ const CartModal = () => {
         };
 
         emailjs.send(
-          'service_c48em2n',
-          'template_9pq4xle',
+          import.meta.env.VITE_EMAILJS_SERVICE_ID,
+          import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
           templateParams,
-          't61ii0o9hr2x6Tqgo'
+          import.meta.env.VITE_EMAILJS_PUBLIC_KEY
         ).then(
           (response) => {
             setIsSendingOtp(false);
