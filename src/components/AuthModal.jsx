@@ -71,7 +71,12 @@ const AuthModal = () => {
         message: `Your AstraRent Password Reset Code is: ${newOtp}`
       };
 
-      emailjs.send('service_c48em2n', 'template_9pq4xle', templateParams, 't61ii0o9hr2x6Tqgo')
+      emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
         .then(() => {
           setIsSending(false);
           setAuthStep('otp');
@@ -107,7 +112,12 @@ const AuthModal = () => {
         message: `Your AstraRent Verification Code is: ${newOtp}`
       };
 
-      emailjs.send('service_c48em2n', 'template_9pq4xle', templateParams, 't61ii0o9hr2x6Tqgo')
+      emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
         .then(() => {
           setIsSending(false);
           setAuthStep('otp');
